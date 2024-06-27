@@ -1,6 +1,7 @@
 const WXAPI = require('apifm-wxapi')
 const CONFIG = require('config.js')
 const AUTH = require('utils/auth')
+const mockData = require('./mockData/app')
 App({
   onLaunch: function() {
     const subDomain = wx.getExtConfigSync().subDomain
@@ -59,17 +60,26 @@ App({
         wx.hideToast()
       }
     })
-    WXAPI.queryConfigBatch('mallName,WITHDRAW_MIN,ALLOW_SELF_COLLECTION,order_hx_uids,subscribe_ids,share_profile,adminUserIds,goodsDetailSkuShowType,shopMod,needIdCheck,balance_pay_pwd,shipping_address_gps,shipping_address_region_level,shopping_cart_vop_open,cps_open,recycle_open,categoryMod,hide_reputation,show_seller_number,show_goods_echarts,show_buy_dynamic,goods_search_show_type,show_3_seller,show_quan_exchange_score,show_score_exchange_growth,show_score_sign,fx_subscribe_ids,share_pic,orderPeriod_open,order_pay_user_balance,wxpay_api_url,sphpay_open,fx_type,invoice_subscribe_ids,zt_open_hx,withdrawal,customerServiceChatCorpId,customerServiceChatUrl,invoice_open').then(res => {
-      if (res.code == 0) {
-        res.data.forEach(config => {
-          wx.setStorageSync(config.key, config.value)
-        })
-        if (this.configLoadOK) {
-          this.configLoadOK()
-        }
-        // wx.setStorageSync('shopMod', '1') // 测试用，不要取消注释
+    // WXAPI.queryConfigBatch('mallName,WITHDRAW_MIN,ALLOW_SELF_COLLECTION,order_hx_uids,subscribe_ids,share_profile,adminUserIds,goodsDetailSkuShowType,shopMod,needIdCheck,balance_pay_pwd,shipping_address_gps,shipping_address_region_level,shopping_cart_vop_open,cps_open,recycle_open,categoryMod,hide_reputation,show_seller_number,show_goods_echarts,show_buy_dynamic,goods_search_show_type,show_3_seller,show_quan_exchange_score,show_score_exchange_growth,show_score_sign,fx_subscribe_ids,share_pic,orderPeriod_open,order_pay_user_balance,wxpay_api_url,sphpay_open,fx_type,invoice_subscribe_ids,zt_open_hx,withdrawal,customerServiceChatCorpId,customerServiceChatUrl,invoice_open').then(res => {
+    //   if (res.code == 0) {
+    //     res.data.forEach(config => {
+    //       wx.setStorageSync(config.key, config.value)
+    //     })
+    //     if (this.configLoadOK) {
+    //       this.configLoadOK()
+    //     }
+    //     // wx.setStorageSync('shopMod', '1') // 测试用，不要取消注释
+    //   }
+    // })
+    if (mockData.queryConfigBatch.code) {
+      mockData.queryConfigBatch.data.forEach(config => {
+        wx.setStorageSync(config.key, config.value)
+      })
+      if (this.configLoadOk) {
+        this.configLoadOk()
       }
-    })
+
+    }
     // ---------------检测navbar高度
     let menuButtonObject = wx.getMenuButtonBoundingClientRect();
     console.log("小程序胶囊信息",menuButtonObject)
@@ -121,21 +131,21 @@ App({
       }
     }
     // 自动登录
-    AUTH.checkHasLogined().then(isLogined => {
-      if (!isLogined) {
-        AUTH.authorize().then( aaa => {
-          if (CONFIG.bindSeller) {
-            AUTH.bindSeller()
-          }
-          this.getUserApiInfo()
-        })
-      } else {
-        if (CONFIG.bindSeller) {
-          AUTH.bindSeller()
-        }
-        this.getUserApiInfo()
-      }
-    })
+    // AUTH.checkHasLogined().then(isLogined => {
+    //   if (!isLogined) {
+    //     AUTH.authorize().then( aaa => {
+    //       if (CONFIG.bindSeller) {
+    //         AUTH.bindSeller()
+    //       }
+    //       this.getUserApiInfo()
+    //     })
+    //   } else {
+    //     if (CONFIG.bindSeller) {
+    //       AUTH.bindSeller()
+    //     }
+    //     this.getUserApiInfo()
+    //   }
+    // })
   },
   async getUserApiInfo() {
     const res = await WXAPI.userDetail(wx.getStorageSync('token'))

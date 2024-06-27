@@ -1,6 +1,7 @@
 const WXAPI = require('apifm-wxapi')
 const CONFIG = require('../../config.js')
 const AUTH = require('../../utils/auth')
+const mockData = require('../../mockData/start.js')
 Page({
   data: {
     banners:[],
@@ -42,9 +43,10 @@ Page({
       }
     } else {
       // 展示启动页
-      const res = await WXAPI.banners({
-        type: 'app'
-      })
+      // const res = await WXAPI.banners({
+      //   type: 'app'
+      // })
+      const res = mockData.banners
       if (res.code == 700) {
         if (shopMod==1) {
           this.goShopSelectPage()
