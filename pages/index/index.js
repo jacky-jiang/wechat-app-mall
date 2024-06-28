@@ -3,7 +3,7 @@ const TOOLS = require('../../utils/tools.js')
 const AUTH = require('../../utils/auth')
 const CONFIG = require('../../config.js')
 const APP = getApp()
-
+const mockData = require('../../mockData/index.js')
 Page({
   data: {
     inputVal: "", // 搜索框内容
@@ -107,21 +107,21 @@ Page({
       }
     }
     // 静默式授权注册/登陆
-    AUTH.checkHasLogined().then(isLogined => {
-      if (!isLogined) {
-        AUTH.authorize().then( aaa => {
-          if (CONFIG.bindSeller) {
-            AUTH.bindSeller()
-          }
-          TOOLS.showTabBarBadge()
-        })
-      } else {
-        if (CONFIG.bindSeller) {
-          AUTH.bindSeller()
-        }
-        TOOLS.showTabBarBadge()
-      }
-    })
+    // AUTH.checkHasLogined().then(isLogined => {
+    //   if (!isLogined) {
+    //     AUTH.authorize().then( aaa => {
+    //       if (CONFIG.bindSeller) {
+    //         AUTH.bindSeller()
+    //       }
+    //       TOOLS.showTabBarBadge()
+    //     })
+    //   } else {
+    //     if (CONFIG.bindSeller) {
+    //       AUTH.bindSeller()
+    //     }
+    //     TOOLS.showTabBarBadge()
+    //   }
+    // })
     this.initBanners()
     this.categories()
     this.cmsCategories()
@@ -139,7 +139,7 @@ Page({
     that.getNotice()
     that.kanjiaGoods()
     that.pingtuanGoods()
-    this.adPosition()
+    // this.adPosition()
     // 读取系统参数
     this.readConfigVal()
     getApp().configLoadOK = () => {
@@ -185,9 +185,10 @@ Page({
   async initBanners(){
     const _data = {}
     // 读取头部轮播图
-    const res1 = await WXAPI.banners({
-      type: 'index'
-    })
+    // const res1 = await WXAPI.banners({
+    //   type: 'index'
+    // })
+    const res1 = mockData.banners
     if (res1.code == 700) {
       wx.showModal({
         title: '提示',

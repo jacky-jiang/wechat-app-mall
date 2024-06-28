@@ -1,0 +1,57 @@
+module.exports = {
+  banners: {
+    code: 0,
+    data: [
+      {
+        businessId: 0,
+        dateAdd: "2024-06-27 12:52:21",
+        dateUpdate: "2020-02-20 09:54:37",
+        id: 339806,
+        linkType: 0,
+        paixu: 0,
+        picUrl:
+          "https://dcdn.it120.cc/2019/12/29/2e79921a-92b3-4d1d-8182-cb3d524be5fb.png",
+        shopId: 0,
+        status: 0,
+        statusStr: "显示",
+        title: "首页轮播图",
+        type: "index",
+        userId: 65263,
+      },
+      {
+        businessId: 0,
+        dateAdd: "2024-06-27 12:52:21",
+        dateUpdate: "2020-02-20 09:54:31",
+        id: 339805,
+        linkType: 0,
+        paixu: 0,
+        picUrl:
+          "https://dcdn.it120.cc/2019/12/29/daca65ee-4347-4792-a490-ccbac4b3c1d7.png",
+        shopId: 0,
+        status: 0,
+        statusStr: "显示",
+        title: "首页轮播图",
+        type: "index",
+        userId: 65263,
+      },
+      {
+        businessId: 0,
+        dateAdd: "2024-06-27 12:52:21",
+        dateUpdate: "2020-02-20 09:54:27",
+        id: 339804,
+        linkType: 0,
+        linkUrl: "",
+        paixu: 0,
+        picUrl:
+          "https://dcdn.it120.cc/2019/12/29/8396f65d-d615-46d8-b2e5-aa41820b9fe5.png",
+        shopId: 0,
+        status: 0,
+        statusStr: "显示",
+        title: "首页轮播图",
+        type: "index",
+        userId: 65263,
+      },
+    ],
+    msg: "success",
+  },
+};
