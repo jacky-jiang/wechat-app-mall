@@ -6,7 +6,7 @@ module.exports = {
         dateUpdate: "2020-04-28 21:22:43",
         key: "mallName",
         remark: "小程序名称",
-        value: "天使童装",
+        value: "coolia服装",
       },
       {
         dateUpdate: "2023-07-13 10:38:07",

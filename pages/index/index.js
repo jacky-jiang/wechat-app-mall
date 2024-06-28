@@ -229,7 +229,8 @@ Page({
     }
   },
   async categories(){
-    const res = await WXAPI.goodsCategory()
+    // const res = await WXAPI.goodsCategory()
+    const res = mockData.category
     let categories = [];
     if (res.code == 0) {
       const _categories = res.data.filter(ele => {
