@@ -71,7 +71,7 @@ App({
     //     // wx.setStorageSync('shopMod', '1') // 测试用，不要取消注释
     //   }
     // })
-    if (mockData.queryConfigBatch.code) {
+    if (mockData.queryConfigBatch.code === 0) {
       mockData.queryConfigBatch.data.forEach(config => {
         wx.setStorageSync(config.key, config.value)
       })

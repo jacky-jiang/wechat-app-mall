@@ -252,11 +252,12 @@ Page({
       "mask": true
     })
     // https://www.yuque.com/apifm/nu0f75/wg5t98
-    const res = await WXAPI.goodsv2({
-      categoryId: categoryId,
-      page: this.data.curPage,
-      pageSize: this.data.pageSize
-    })
+    // const res = await WXAPI.goodsv2({
+    //   categoryId: categoryId,
+    //   page: this.data.curPage,
+    //   pageSize: this.data.pageSize
+    // })
+    const res = mockData.goodsV2Category0
     wx.hideLoading()
     if (res.code == 404 || res.code == 700) {
       let newData = {
@@ -305,13 +306,19 @@ Page({
   },
   getNotice: function() {
     var that = this;
-    WXAPI.noticeList({pageSize: 5}).then(function (res) {
-      if (res.code == 0) {
-        that.setData({
-          noticeList: res.data
-        });
-      }
-    })
+    // WXAPI.noticeList({pageSize: 5}).then(function (res) {
+    //   if (res.code == 0) {
+    //     that.setData({
+    //       noticeList: res.data
+    //     });
+    //   }
+    // })
+    const res = mockData.noticeList
+    if (res.code === 0) {
+      that.setData({
+        noticeList: res.data
+      })
+    }
   },
   onReachBottom: function() {
     this.setData({
@@ -431,7 +438,8 @@ Page({
   },
   async cmsCategories() {
     // https://www.yuque.com/apifm/nu0f75/slu10w
-    const res = await WXAPI.cmsCategories()
+    // const res = await WXAPI.cmsCategories()
+    const res = mockData.cmsCategory
     if (res.code == 0) {
       const cmsCategories = res.data.filter(ele => {
         return ele.type == 'index' // 只筛选类型为 index 的分类
