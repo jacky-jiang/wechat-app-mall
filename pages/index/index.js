@@ -126,15 +126,21 @@ Page({
     this.categories()
     this.cmsCategories()
     // https://www.yuque.com/apifm/nu0f75/wg5t98
-    WXAPI.goodsv2({
-      recommendStatus: 1
-    }).then(res => {
-      if (res.code === 0){
-        that.setData({
-          goodsRecommend: res.data.result
-        })
-      }      
-    })
+    // WXAPI.goodsv2({
+    //   recommendStatus: 1
+    // }).then(res => {
+    //   if (res.code === 0){
+    //     that.setData({
+    //       goodsRecommend: res.data.result
+    //     })
+    //   }      
+    // })
+    const res = mockData.goodsV2Recommend
+    if (res.code === 0) {
+      that.setData({
+        goodsRecommend: res.data.result
+      })
+    }
     that.getCoupons()
     that.getNotice()
     that.kanjiaGoods()
@@ -151,7 +157,7 @@ Page({
       title: wx.getStorageSync('mallName')
     })
     this.setData({
-      mallName:wx.getStorageSync('mallName')?wx.getStorageSync('mallName'):'',
+      mallName: wx.getStorageSync('mallName') ? wx.getStorageSync('mallName') : '',
       show_buy_dynamic: wx.getStorageSync('show_buy_dynamic')
     })
     const shopMod = wx.getStorageSync('shopMod')
@@ -221,7 +227,8 @@ Page({
     }
   },
   async goodsDynamic(){
-    const res = await WXAPI.goodsDynamic(0)
+    // const res = await WXAPI.goodsDynamic(0)
+    const res = mockData.goodsDynamic
     if (res.code == 0) {
       this.setData({
         goodsDynamic: res.data
